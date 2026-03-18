@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="LA-Pose: Latent Action Pretraining Meets Pose Estimation">
+  <meta name="keywords" content="LA-Pose, latent action, pretraining, pose estimation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LA-Pose</title>
+
+  <!--  Open Graph / Facebook -->
+  <meta property="og:title" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://la-pose.github.io/" />
+  <meta property="og:description" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation">
+  <meta name="twitter:description" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="./static/css/bootstrap-4.4.1.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h2 class="title is-2 publication-title" style="margin-bottom: 10px">
+            <strong>LA-Pose: </strong> Latent Action Pretraining Meets Pose Estimation
+          </h2>
+          <h3 class="subtitle is-4 publication-subtitle" style="margin-top: 0; margin-bottom: 20px; font-weight: 600; color: #7a7a7a;">
+            CVPR 2026
+          </h3>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://eric-zqwang.github.io/">Zhengqing Wang</a>*<sup>1,2</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=PTfcrPoAAAAJ&hl=en">Saurabh Nair</a>*<sup>1</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=FXpg0nIAAAAJ&hl=en">Prajwal Chidananda</a>*<sup>1</sup>
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block">
+              <a href="https://sites.google.com/view/pujith-kachana/">Pujith Kachana</a><sup>1</sup>
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block">
+              <a href="https://samwli.github.io/">Samuel Li</a><sup>1</sup>
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block">
+              <a href="https://mattabrown.github.io/">Matthew Brown</a><sup>1</sup>
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block">
+              <a href="https://yasu-furukawa.github.io/">Yasutaka Furukawa</a><sup>1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors affiliations">
+            <span class="author-block"><sup>1</sup><a href="https://wayve.ai/" class="affiliation-link">Wayve</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>2</sup><a href="https://gruvi.cs.sfu.ca/" class="affiliation-link">Simon Fraser University</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <p style="font-size: 0.85em; color: #999; margin-top: 8px;">* Equal contribution</p>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+          
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+      
+          <div>
+            <video controls autoplay loop playsinline webkit-playsinline preload="metadata" x5-video-player-type="h5" x5-video-orientation="portraint" x5-video-player-fullscreen="true">
+              <source src="resources/teaser.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+      
+          <div class="tldr-caption">
+            <strong>LA-Pose</strong> is a placeholder project. Replace this with a one-sentence summary of the method and its key contributions.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3" style="margin-top: -30px">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            This paper revisits camera pose estimation through the lens of self-supervised pretraining, focusing on inverse dynamics pretraining as a scalable alternative to the current trend of fully supervised training with 3D annotations. Concretely, we employ inverse- and forward dynamics models to learn latent action representations, similar to Genie from large-scale driving videos. Our idea is simple yet effective. Existing methods use latent actions in their original capacity, that is, as "action" conditioning of world-models or as proxies of robot "action" parameters in policy networks. Our method, dubbed LA-Pose, repurposes the latent action features as inputs to a camera pose estimator, finetuned on a limited set of high quality 3D annotations. This formulation enables accurate and generalizable pose prediction while maintaining feed-forward efficiency. Extensive experiments on driving benchmarks show that LA-Pose achieves competitive and even superior performance to state-of-the-art methods while using orders of magnitude less labeled data. Concretely, on the Waymo and PandaSet benchmarks, LA-Pose achieves over 10% higher pose accuracy than recent feed-forward methods. To our knowledge, this work is the first to demonstrate the power of inverse-dynamics self-supervised learning for pose estimation.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3" style="margin-top: -20px">Method Overview</h2>
+
+        <figure class="media-container">
+          <div>
+            <figcaption class="method-caption">
+              A step-by-step visualization of the <strong>LA-Pose pipeline</strong>. The method takes input images and processes them through a series of stages to produce accurate pose estimates. Replace this caption with the actual method description.
+            </figcaption>
+            <div style="width: 100%; aspect-ratio: 16/7; background: #f5f7fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb; margin-top: 20px;">
+              <p style="color: #999; font-size: 1.1em;">Method overview figure placeholder</p>
+            </div>
+          </div>
+        </figure>
+
+        <div style="margin-top: 60px; margin-bottom: 40px;">
+          <figure class="media-container">
+            <figcaption class="method-caption">
+              Detailed method pipeline. <strong>Training (top):</strong> Input images are processed through multiple stages. <strong>Inference (bottom):</strong> The trained model produces pose estimates efficiently. Replace this with the actual pipeline description.
+            </figcaption>
+            <div style="width: 100%; aspect-ratio: 16/9; background: #f5f7fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb; margin-top: 20px;">
+              <p style="color: #999; font-size: 1.1em;">Detailed pipeline figure placeholder</p>
+            </div>
+          </figure>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Results. -->
+    <div class="columns is-centered ">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered" style="margin-top: -30px">Results</h2>
+
+        <h3 class="title is-4 has-text-centered" style="margin-top: 40px;">Qualitative Results on Dataset A</h3>
+        <div style="width: 100%; max-width: 900px; margin: 0 auto; aspect-ratio: 16/9; background: #f5f7fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb;">
+          <p style="color: #999; font-size: 1.1em;">Results video / comparison placeholder</p>
+        </div>
+
+        <h3 class="title is-4 has-text-centered" style="margin-top: 60px;">Qualitative Results on Dataset B</h3>
+        <div style="width: 100%; max-width: 900px; margin: 0 auto; aspect-ratio: 16/9; background: #f5f7fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb;">
+          <p style="color: #999; font-size: 1.1em;">Results video / comparison placeholder</p>
+        </div>
+
+        <h3 class="title is-4 has-text-centered" style="margin-top: 60px;">Detailed Comparison</h3>
+        <div class="content has-text-justified">
+          <p>
+            Some detailed frame-level comparisons between baselines and LA-Pose.
+          </p>
+        </div>
+
+        <div class="container">
+          <ul class="nav nav-tabs nav-fill nav-justified responsive-nav" id="object-scale-recon">
+              <li class="nav-item">
+                <a class="nav-link active" onclick="exampleEvent(0)">example 1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="exampleEvent(1)">example 2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="exampleEvent(2)">example 3</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="exampleEvent(3)">example 4</a>
+              </li>
+          </ul>
+          <div style="width: 100%; aspect-ratio: 16/9; background: #f5f7fa; border-radius: 0 0 8px 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb; border-top: none;">
+            <p style="color: #999; font-size: 1.1em;" id="comparison-placeholder">Comparison slider placeholder (example 1)</p>
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title has-text-centered">BibTeX</h2>
+    <pre class="bibtex-container"><code>@inproceedings{Wang2026LAPose,
+  author    = {Wang, Zhengqing and Nair, Saurabh and Chidananda, Prajwal and Kachana, Pujith and Li, Samuel and Brown, Matthew and Furukawa, Yasutaka},
+  title     = {LA-Pose: Latent Action Pretraining Meets Pose Estimation},
+  booktitle = {CVPR},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+<section class="section" id="Acknowledgements">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+    Placeholder acknowledgements. We thank collaborators for helpful discussions. This research is supported by grants and computing resources.
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This webpage template is adapted from <a href="https://clift-nvs.github.io/">CLiFT</a>, which is originally from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
+          </p>
+        </div>
+      </div>
+          <p></p>
+        </div>
+      </div>
+</footer>
+
+<script>
+function exampleEvent(idx) {
+  let placeholder = document.getElementById('comparison-placeholder');
+  placeholder.textContent = 'Comparison slider placeholder (example ' + (idx + 1) + ')';
+
+  let scene_list = document.getElementById("object-scale-recon").children;
+  for (let i = 0; i < scene_list.length; i++) {
+    if (idx == i) {
+      scene_list[i].children[0].className = "nav-link active";
+    } else {
+      scene_list[i].children[0].className = "nav-link";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
