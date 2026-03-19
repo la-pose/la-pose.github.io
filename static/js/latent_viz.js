@@ -279,16 +279,6 @@
     var label = document.getElementById('viz-anim-label');
     if (label) label.textContent = 'T=' + pt.timestep + ' / ' + (batchPoints.length + 1);
 
-    // Update badges
-    var d = vizData;
-    var idx = pt.pointIdx;
-    var badges = document.getElementById('viz-detail-badges');
-    var dir = yawDirection(d.yaw[idx]);
-    badges.innerHTML =
-      '<span class="viz-badge viz-badge-batch">Batch ' + d.batch[idx] + '</span>' +
-      '<span class="viz-badge viz-badge-timestep">T=' + d.timestep[idx] + '</span>' +
-      '<span class="viz-badge viz-badge-translation">Speed ' + d.translation_mag[idx].toFixed(2) + '</span>' +
-      '<span class="viz-badge viz-badge-yaw">' + dir + ' (' + d.yaw[idx].toFixed(3) + ' rad)</span>';
   }
 
   function initAnimUI() {
