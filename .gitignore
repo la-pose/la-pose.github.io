@@ -1,1 +1,3 @@
 .DS_Store
+visualizations.zip
+visualizations/step_120000/tsne_data.npz

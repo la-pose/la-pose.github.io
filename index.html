@@ -37,6 +37,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.0.min.js"></script>
 
 </head>
 <body>
@@ -85,7 +86,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="#"
+                <a href="resources/la_pose.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -122,14 +123,13 @@
         <div class="column is-full-width">
       
           <div>
-            <video controls autoplay loop playsinline webkit-playsinline preload="metadata" x5-video-player-type="h5" x5-video-orientation="portraint" x5-video-player-fullscreen="true">
+            <video autoplay loop muted playsinline webkit-playsinline preload="metadata">
               <source src="resources/teaser.mp4" type="video/mp4">
-              Your browser does not support the video tag.
             </video>
           </div>
       
           <div class="tldr-caption">
-            <strong>LA-Pose</strong> is a placeholder project. Replace this with a one-sentence summary of the method and its key contributions.
+            <strong>LA-Pose</strong> repurposes self-supervised latent action representations &mdash; learned from large-scale driving videos via inverse dynamics &mdash; as powerful features for camera pose estimation, achieving state-of-the-art accuracy with orders of magnitude less labeled data.
           </div>
         </div>
       </div>
@@ -142,7 +142,7 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3" style="margin-top: -30px">Abstract</h2>
+        <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
             This paper revisits camera pose estimation through the lens of self-supervised pretraining, focusing on inverse dynamics pretraining as a scalable alternative to the current trend of fully supervised training with 3D annotations. Concretely, we employ inverse- and forward dynamics models to learn latent action representations, similar to Genie from large-scale driving videos. Our idea is simple yet effective. Existing methods use latent actions in their original capacity, that is, as "action" conditioning of world-models or as proxies of robot "action" parameters in policy networks. Our method, dubbed LA-Pose, repurposes the latent action features as inputs to a camera pose estimator, finetuned on a limited set of high quality 3D annotations. This formulation enables accurate and generalizable pose prediction while maintaining feed-forward efficiency. Extensive experiments on driving benchmarks show that LA-Pose achieves competitive and even superior performance to state-of-the-art methods while using orders of magnitude less labeled data. Concretely, on the Waymo and PandaSet benchmarks, LA-Pose achieves over 10% higher pose accuracy than recent feed-forward methods. To our knowledge, this work is the first to demonstrate the power of inverse-dynamics self-supervised learning for pose estimation.
@@ -161,29 +161,20 @@
     <!-- Method. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3" style="margin-top: -20px">Method Overview</h2>
+        <h2 class="title is-3">Method Overview</h2>
 
         <figure class="media-container">
           <div>
             <figcaption class="method-caption">
-              A step-by-step visualization of the <strong>LA-Pose pipeline</strong>. The method takes input images and processes them through a series of stages to produce accurate pose estimates. Replace this caption with the actual method description.
+              Our framework consists of two stages: <strong>latent action pretraining</strong> and <strong>camera pose post-training</strong>.
+              In the <strong>pretraining stage (top)</strong>, an inverse&ndash;forward dynamics model learns latent actions from consecutive video frames by predicting future tokens through a self-supervised inverse-dynamics objective. These latent actions encode compact, motion-centric representations of frame-to-frame dynamics.
+              In the <strong>post-training stage (bottom left)</strong>, we attach a lightweight pose estimation head to the pretrained inverse dynamics encoder. The head predicts relative camera translation, rotation (quaternion), field-of-view, and metric scale from the latent actions.
             </figcaption>
-            <div style="width: 100%; aspect-ratio: 16/7; background: #f5f7fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb; margin-top: 20px;">
-              <p style="color: #999; font-size: 1.1em;">Method overview figure placeholder</p>
-            </div>
+            <img src="resources/method.png" alt="LA-Pose method overview"
+                 style="margin-top: 20px;" />
           </div>
         </figure>
 
-        <div style="margin-top: 60px; margin-bottom: 40px;">
-          <figure class="media-container">
-            <figcaption class="method-caption">
-              Detailed method pipeline. <strong>Training (top):</strong> Input images are processed through multiple stages. <strong>Inference (bottom):</strong> The trained model produces pose estimates efficiently. Replace this with the actual pipeline description.
-            </figcaption>
-            <div style="width: 100%; aspect-ratio: 16/9; background: #f5f7fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb; margin-top: 20px;">
-              <p style="color: #999; font-size: 1.1em;">Detailed pipeline figure placeholder</p>
-            </div>
-          </figure>
-        </div>
 
       </div>
     </div>
@@ -192,51 +183,118 @@
 </section>
 
 
+<section class="section" id="latent-action-viz">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Exploring the Latent Action Space</h2>
+
+        <div class="method-caption" style="margin-bottom: 30px;">
+          Each point below represents a <strong>latent action</strong> &mdash; a learned representation of the camera motion between two consecutive driving frames, projected to 2D via t-SNE. Points that are close together encode similar motions. Toggle the coloring to reveal how <strong>translation speed</strong> and <strong>yaw (turning direction)</strong> naturally separate in the learned space. Click any point to view its driving sequence, or drag-select a region to browse all frame pairs within a cluster.
+        </div>
+
+        <div class="viz-toggle-container">
+          <button class="viz-toggle active" data-mode="translation" onclick="vizSetMode('translation')">
+            <i class="fas fa-tachometer-alt"></i> Translation Speed
+          </button>
+          <button class="viz-toggle" data-mode="yaw" onclick="vizSetMode('yaw')">
+            <i class="fas fa-compass"></i> Yaw (Turning)
+          </button>
+        </div>
+
+        <div class="viz-plot-wrapper">
+          <div id="viz-plot">
+            <div id="viz-loader" class="viz-loader">
+              <div class="viz-spinner"></div>
+              <div class="viz-loader-text">Loading visualization...</div>
+              <div class="viz-loader-bar"><div class="viz-loader-fill" id="viz-loader-fill"></div></div>
+            </div>
+          </div>
+
+          <div id="viz-detail-panel" class="viz-overlay">
+            <button class="viz-overlay-close" onclick="vizCloseDetail()">&times;</button>
+            <div class="viz-detail-badges" id="viz-detail-badges"></div>
+            <div class="viz-overlay-media">
+              <img id="viz-batch-gif" alt="Batch sequence" />
+            </div>
+            <div class="viz-anim-toolbar">
+              <button class="viz-anim-btn" id="viz-anim-play" onclick="vizAnimToggle()">
+                <i class="fas fa-play" id="viz-anim-icon"></i>
+              </button>
+              <div class="viz-anim-track">
+                <input type="range" id="viz-anim-slider" min="0" max="14" value="0"
+                       oninput="vizAnimSeek(this.value)">
+                <span class="viz-anim-label" id="viz-anim-label">T=1 / 15</span>
+              </div>
+              <div class="viz-anim-speed">
+                <button class="viz-speed-btn" onclick="vizAnimSpeed(-1)"><i class="fas fa-minus"></i></button>
+                <span id="viz-anim-speed-label">1.0x</span>
+                <button class="viz-speed-btn" onclick="vizAnimSpeed(1)"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="viz-instructions">
+            <span><i class="fas fa-hand-pointer"></i> Click a point to view its driving sequence</span>
+            <span><i class="fas fa-vector-square"></i> Box-select a region to browse frame pairs</span>
+            <button class="viz-clear-btn" onclick="vizClearSelection()">
+              <i class="fas fa-undo"></i> Clear
+            </button>
+          </div>
+        </div>
+
+        <div id="viz-area-panel" class="viz-panel">
+          <div class="viz-panel-header">
+            <h3>Frame Pairs from Selected Region</h3>
+            <span class="viz-area-count" id="viz-area-count"></span>
+            <button class="viz-close-btn" onclick="vizCloseArea()">&times;</button>
+          </div>
+          <div class="viz-area-pagination" id="viz-area-pagination">
+            <button id="viz-prev-page" onclick="vizChangePage(-1)"><i class="fas fa-chevron-left"></i> Prev</button>
+            <span id="viz-page-info"></span>
+            <button id="viz-next-page" onclick="vizChangePage(1)">Next <i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div id="viz-area-grid" class="viz-frame-grid"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section class="section">
   <div class="container is-max-desktop">
 
     <!-- Results. -->
-    <div class="columns is-centered ">
+    <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered" style="margin-top: -30px">Results</h2>
+        <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
 
-        <h3 class="title is-4 has-text-centered" style="margin-top: 40px;">Qualitative Results on Dataset A</h3>
-        <div style="width: 100%; max-width: 900px; margin: 0 auto; aspect-ratio: 16/9; background: #f5f7fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb;">
-          <p style="color: #999; font-size: 1.1em;">Results video / comparison placeholder</p>
-        </div>
-
-        <h3 class="title is-4 has-text-centered" style="margin-top: 60px;">Qualitative Results on Dataset B</h3>
-        <div style="width: 100%; max-width: 900px; margin: 0 auto; aspect-ratio: 16/9; background: #f5f7fa; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb;">
-          <p style="color: #999; font-size: 1.1em;">Results video / comparison placeholder</p>
-        </div>
-
-        <h3 class="title is-4 has-text-centered" style="margin-top: 60px;">Detailed Comparison</h3>
-        <div class="content has-text-justified">
-          <p>
-            Some detailed frame-level comparisons between baselines and LA-Pose.
-          </p>
-        </div>
-
-        <div class="container">
-          <ul class="nav nav-tabs nav-fill nav-justified responsive-nav" id="object-scale-recon">
-              <li class="nav-item">
-                <a class="nav-link active" onclick="exampleEvent(0)">example 1</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="exampleEvent(1)">example 2</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="exampleEvent(2)">example 3</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="exampleEvent(3)">example 4</a>
-              </li>
+        <div class="container" style="margin-top: 16px;">
+          <ul class="nav nav-tabs nav-fill nav-justified responsive-nav" id="results-dataset-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" onclick="switchDataset(0)">Waymo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="switchDataset(1)">PandaSet</a>
+            </li>
           </ul>
-          <div style="width: 100%; aspect-ratio: 16/9; background: #f5f7fa; border-radius: 0 0 8px 8px; display: flex; align-items: center; justify-content: center; border: 1px solid #dbdbdb; border-top: none;">
-            <p style="color: #999; font-size: 1.1em;" id="comparison-placeholder">Comparison slider placeholder (example 1)</p>
+          <div>
+            <div id="dataset-panel-0">
+              <video autoplay loop muted playsinline webkit-playsinline preload="metadata" style="width:100%;max-width:100%;border-radius:0 0 10px 10px;display:block;">
+                <source src="resources/waymo.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div id="dataset-panel-1" style="display:none;">
+              <video loop muted playsinline webkit-playsinline preload="metadata" style="width:100%;max-width:100%;border-radius:0 0 10px 10px;display:block;">
+                <source src="resources/pandaset.mp4" type="video/mp4">
+              </video>
+            </div>
           </div>
         </div>
 
+      </div>
     </div>
 
   </div>
@@ -257,8 +315,8 @@
 
 <section class="section" id="Acknowledgements">
   <div class="container is-max-desktop content">
-    <h2 class="title">Acknowledgements</h2>
-    Placeholder acknowledgements. We thank collaborators for helpful discussions. This research is supported by grants and computing resources.
+    <h2 class="title">Acknowledgments</h2>
+    We thank Jaskaran Singh Sodhi and Saloni Puran Parekh for their help with pre-training and post-training data construction. We thank Anner De Jong for engineering support. We thank Thomas Kollar for reviewing the paper and providing valuable feedback.
   </div>
 </section>
 
@@ -283,20 +341,23 @@
 </footer>
 
 <script>
-function exampleEvent(idx) {
-  let placeholder = document.getElementById('comparison-placeholder');
-  placeholder.textContent = 'Comparison slider placeholder (example ' + (idx + 1) + ')';
-
-  let scene_list = document.getElementById("object-scale-recon").children;
-  for (let i = 0; i < scene_list.length; i++) {
-    if (idx == i) {
-      scene_list[i].children[0].className = "nav-link active";
+function switchDataset(idx) {
+  var tabs = document.getElementById('results-dataset-tabs').children;
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].children[0].className = (i === idx) ? 'nav-link active' : 'nav-link';
+    var panel = document.getElementById('dataset-panel-' + i);
+    var video = panel.querySelector('video');
+    if (i === idx) {
+      panel.style.display = 'block';
+      video.play();
     } else {
-      scene_list[i].children[0].className = "nav-link";
+      panel.style.display = 'none';
+      video.pause();
     }
   }
 }
 </script>
+<script src="./static/js/latent_viz.js"></script>
 
 </body>
 </html>
