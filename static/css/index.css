@@ -1084,7 +1084,7 @@ video {
 
 .viz-frame-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
@@ -1101,6 +1101,17 @@ video {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   border-color: #3273dc;
+}
+
+.viz-frame-pair {
+  display: flex;
+  gap: 2px;
+}
+
+.viz-frame-card .viz-frame-pair img {
+  width: 50%;
+  height: auto;
+  display: block;
 }
 
 .viz-frame-card img {

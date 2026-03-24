@@ -2,9 +2,9 @@
   'use strict';
 
   var DATA_PATH = './visualizations/step_120000/tsne_data.json';
-  var FRAME_PATH = './visualizations/step_120000/frame_pairs/';
+  var FRAMES_PATH = './visualizations/step_120000/frames/';
   var VIDEO_PATH = './visualizations/step_120000/batch_videos/';
-  var ITEMS_PER_PAGE = 12;
+  var ITEMS_PER_PAGE = 6;
 
   var vizData = null;
   var currentMode = 'translation';
@@ -30,8 +30,8 @@
     return s;
   }
 
-  function framePath(idx) {
-    return FRAME_PATH + 'frame_pair_' + pad(idx, 3) + '.jpg';
+  function frameSrc(batchIdx, frameIdx) {
+    return FRAMES_PATH + 'b' + pad(batchIdx, 3) + '_f' + pad(frameIdx, 2) + '.jpg';
   }
 
   function batchGifPath(batchIdx) {
@@ -387,11 +387,16 @@
     for (var i = 0; i < pageItems.length; i++) {
       var idx = pageItems[i];
       var d = vizData;
+      var b = d.batch[idx];
+      var t = d.timestep[idx];
       html +=
         '<div class="viz-frame-card" onclick="vizAreaCardClick(' + idx + ')">' +
-        '<img src="' + framePath(idx) + '" alt="Frame pair ' + idx + '" loading="lazy" />' +
+        '<div class="viz-frame-pair">' +
+        '<img src="' + frameSrc(b, t - 1) + '" alt="Frame t-1" loading="lazy" />' +
+        '<img src="' + frameSrc(b, t) + '" alt="Frame t" loading="lazy" />' +
+        '</div>' +
         '<div class="viz-frame-card-label">' +
-        '<span>B:' + d.batch[idx] + ' T:' + d.timestep[idx] + '</span>' +
+        '<span>Scene ' + b + ', T=' + t + '</span>' +
         '<span class="viz-fc-badge" style="background:#eef3ff;color:#3273dc;">Pt ' + idx + '</span>' +
         '</div></div>';
     }
