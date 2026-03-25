@@ -129,7 +129,7 @@
           </div>
       
           <div class="tldr-caption">
-            <strong>LA-Pose</strong> learns camera pose via self-supervised latent actions from large-scale unlabelled video.
+            <strong>TL;DR</strong> &mdash; Self-supervised learning of a latent action space from unlabelled video, repurposed for accurate and generalizable camera pose estimation.
           </div>
         </div>
       </div>
@@ -155,14 +155,12 @@
 </section>
 
 
+<!-- Method Overview (disabled for now)
 <section class="section">
   <div class="container is-max-desktop">
-
-    <!-- Method. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Method Overview</h2>
-
         <figure class="media-container">
           <div>
             <figcaption class="method-caption">
@@ -174,13 +172,11 @@
                  style="margin-top: 20px;" />
           </div>
         </figure>
-
-
       </div>
     </div>
-
   </div>
 </section>
+-->
 
 
 <section class="section" id="latent-action-viz">
@@ -300,6 +296,81 @@
 </section>
 
 
+<section class="section" id="youtube-driving">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">In-the-Wild YouTube Driving Videos</h2>
+
+        <div class="yt-section-desc">
+          <strong>LA-Pose</strong> generalizes to uncurated YouTube driving footage across diverse conditions.
+          Below we show predicted camera trajectories (right) alongside the original video (left) on
+          scenes spanning nighttime, chaotic traffic, mountain roads, rain, and tunnels.
+        </div>
+
+        <div class="container" style="margin-top: 16px;">
+          <ul class="nav nav-tabs nav-fill nav-justified responsive-nav" id="yt-category-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" onclick="switchYTCategory('night')"><i class="fas fa-moon"></i> Night</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="switchYTCategory('chaos')"><i class="fas fa-traffic-light"></i> Chaos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="switchYTCategory('mountain')"><i class="fas fa-mountain"></i> Mountain</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="switchYTCategory('rain')"><i class="fas fa-cloud-rain"></i> Rain</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="switchYTCategory('tunnel')"><i class="fas fa-road"></i> Tunnel</a>
+            </li>
+          </ul>
+
+          <div class="yt-carousel-wrapper">
+          <button class="yt-arrow" onclick="ytCarouselNav(-1)"><i class="fas fa-chevron-left"></i></button>
+          <div id="yt-carousel" class="yt-carousel">
+            <div class="yt-carousel-inner">
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/26_9x6sEj2Y_poster.jpg" playsinline><source src="videos/opendv/night/26_9x6sEj2Y.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/2b3bbKcKIFA_poster.jpg" playsinline><source src="videos/opendv/night/2b3bbKcKIFA.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/44Z4T_wRVmM_poster.jpg" playsinline><source src="videos/opendv/night/44Z4T_wRVmM.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/5vUF7hbhiAs_poster.jpg" playsinline><source src="videos/opendv/night/5vUF7hbhiAs.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/6CadnBQGLdE_poster.jpg" playsinline><source src="videos/opendv/night/6CadnBQGLdE.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/70FK7eLUhDc_poster.jpg" playsinline><source src="videos/opendv/night/70FK7eLUhDc.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/75X9vSFCh14_poster.jpg" playsinline><source src="videos/opendv/night/75X9vSFCh14.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/86pZTI5gJQM_poster.jpg" playsinline><source src="videos/opendv/night/86pZTI5gJQM.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/8ziL3gjSA5Y_poster.jpg" playsinline><source src="videos/opendv/night/8ziL3gjSA5Y.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/93D6qxMlk7g_poster.jpg" playsinline><source src="videos/opendv/night/93D6qxMlk7g.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/tTBJeT5F4r8_poster.jpg" playsinline><source src="videos/opendv/night/tTBJeT5F4r8.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="chaos"><video muted preload="none" poster="videos/opendv/chaos/Af0SUwah1bQ_poster.jpg" playsinline><source src="videos/opendv/chaos/Af0SUwah1bQ.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="chaos"><video muted preload="none" poster="videos/opendv/chaos/MAj6y23vNuU_poster.jpg" playsinline><source src="videos/opendv/chaos/MAj6y23vNuU.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="chaos"><video muted preload="none" poster="videos/opendv/chaos/QZPqluJA0OY_poster.jpg" playsinline><source src="videos/opendv/chaos/QZPqluJA0OY.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="chaos"><video muted preload="none" poster="videos/opendv/chaos/_Wb1ASZ4rBA_poster.jpg" playsinline><source src="videos/opendv/chaos/_Wb1ASZ4rBA.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="chaos"><video muted preload="none" poster="videos/opendv/chaos/zZrOxhH1u4k_poster.jpg" playsinline><source src="videos/opendv/chaos/zZrOxhH1u4k.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="mountain"><video muted preload="none" poster="videos/opendv/mountain/3wNb482U6Gw_poster.jpg" playsinline><source src="videos/opendv/mountain/3wNb482U6Gw.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="mountain"><video muted preload="none" poster="videos/opendv/mountain/4KBuweIiQKQ_poster.jpg" playsinline><source src="videos/opendv/mountain/4KBuweIiQKQ.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="mountain"><video muted preload="none" poster="videos/opendv/mountain/d-93lxEE2_Q_poster.jpg" playsinline><source src="videos/opendv/mountain/d-93lxEE2_Q.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="mountain"><video muted preload="none" poster="videos/opendv/mountain/gBbkq0jZCw0_poster.jpg" playsinline><source src="videos/opendv/mountain/gBbkq0jZCw0.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="rain"><video muted preload="none" poster="videos/opendv/rain/5XpbUaPMM70_poster.jpg" playsinline><source src="videos/opendv/rain/5XpbUaPMM70.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="rain"><video muted preload="none" poster="videos/opendv/rain/5p57_4jrCbE_poster.jpg" playsinline><source src="videos/opendv/rain/5p57_4jrCbE.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="rain"><video muted preload="none" poster="videos/opendv/rain/8mf5prrubCM_poster.jpg" playsinline><source src="videos/opendv/rain/8mf5prrubCM.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="rain"><video muted preload="none" poster="videos/opendv/rain/B8Yyf6WKgaM_poster.jpg" playsinline><source src="videos/opendv/rain/B8Yyf6WKgaM.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="tunnel"><video muted preload="none" poster="videos/opendv/tunnel/lbxAGY1fb7o_poster.jpg" playsinline><source src="videos/opendv/tunnel/lbxAGY1fb7o.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="tunnel"><video muted preload="none" poster="videos/opendv/tunnel/UgCbFzcIKVU_poster.jpg" playsinline><source src="videos/opendv/tunnel/UgCbFzcIKVU.mp4" type="video/mp4"></video></div>
+              <div class="yt-slide" data-cat="tunnel"><video muted preload="none" poster="videos/opendv/tunnel/bqiM7F6TDfo_poster.jpg" playsinline><source src="videos/opendv/tunnel/bqiM7F6TDfo.mp4" type="video/mp4"></video></div>
+            </div>
+            <div class="yt-carousel-counter" id="yt-carousel-counter"></div>
+          </div>
+          <button class="yt-arrow" onclick="ytCarouselNav(1)"><i class="fas fa-chevron-right"></i></button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title has-text-centered">BibTeX</h2>
@@ -355,6 +426,65 @@ function switchDataset(idx) {
     }
   }
 }
+
+var ytCategories = ['night', 'chaos', 'mountain', 'rain', 'tunnel'];
+var ytCurrentCat = 'night';
+var ytCurrentIdx = 0;
+var ytSlideCache = {};
+
+function ytBuildCache() {
+  var slides = document.querySelectorAll('.yt-slide');
+  ytSlideCache = {};
+  slides.forEach(function(s) {
+    var cat = s.getAttribute('data-cat');
+    if (!ytSlideCache[cat]) ytSlideCache[cat] = [];
+    ytSlideCache[cat].push(s);
+  });
+}
+
+function ytShowSlide() {
+  var allSlides = document.querySelectorAll('.yt-slide');
+  allSlides.forEach(function(s) {
+    s.classList.remove('active');
+    var v = s.querySelector('video');
+    if (v) { v.pause(); v.currentTime = 0; }
+  });
+  var catSlides = ytSlideCache[ytCurrentCat];
+  if (catSlides && catSlides[ytCurrentIdx]) {
+    catSlides[ytCurrentIdx].classList.add('active');
+    var v = catSlides[ytCurrentIdx].querySelector('video');
+    if (v) v.play();
+  }
+  var counter = document.getElementById('yt-carousel-counter');
+  counter.textContent = (ytCurrentIdx + 1) + ' / ' + catSlides.length;
+}
+
+function switchYTCategory(cat) {
+  ytCurrentCat = cat;
+  ytCurrentIdx = 0;
+  var tabs = document.getElementById('yt-category-tabs').children;
+  for (var i = 0; i < ytCategories.length; i++) {
+    tabs[i].children[0].className = (ytCategories[i] === cat) ? 'nav-link active' : 'nav-link';
+  }
+  ytShowSlide();
+}
+
+function ytCarouselNav(dir) {
+  var catSlides = ytSlideCache[ytCurrentCat];
+  if (!catSlides) return;
+  ytCurrentIdx += dir;
+  if (ytCurrentIdx < 0) ytCurrentIdx = catSlides.length - 1;
+  if (ytCurrentIdx >= catSlides.length) ytCurrentIdx = 0;
+  ytShowSlide();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  ytBuildCache();
+  ytShowSlide();
+  document.querySelectorAll('.yt-slide video').forEach(function(v) {
+    v.addEventListener('ended', function() { ytCarouselNav(1); });
+  });
+});
 </script>
 <script src="./static/js/latent_viz.js"></script>
 
