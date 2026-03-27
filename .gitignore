@@ -3,4 +3,4 @@ visualizations.zip
 visualizations/step_120000/tsne_data.npz
 
 # Large video files for YouTube driving demos (host separately or force-add when ready)
-videos/opendv/
+# videos/opendv/
