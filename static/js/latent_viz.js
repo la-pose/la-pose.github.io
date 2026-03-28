@@ -22,6 +22,7 @@
   var animInterval = 500;     // ms per tick, matches GIF frame delay (16 ticks x 500ms = 8s)
   var animSpeedLevel = 2;     // index into SPEEDS
   var batchPoints = [];       // [{x, y, pointIdx, timestep}, ...] sorted by timestep
+  var currentBatchIdx = -1;
   var SPEEDS = [0.25, 0.5, 1.0, 2.0, 4.0];
 
   function pad(n, w) {
@@ -258,12 +259,8 @@
 
     animTimer = setInterval(function () {
       animStep++;
-      if (animStep >= batchPoints.length) animStep = -1;
-      if (animStep >= 0) {
-        renderAnimStep();
-      } else {
-        hideCurrentMarker();
-      }
+      if (animStep >= batchPoints.length) animStep = 0;
+      renderAnimStep();
     }, animInterval / SPEEDS[animSpeedLevel]);
   }
 
@@ -271,18 +268,20 @@
     moveCurrentMarker(animStep);
     var pt = batchPoints[animStep];
 
-    // Update slider
     var slider = document.getElementById('viz-anim-slider');
     if (slider) slider.value = animStep;
 
-    // Update label
     var label = document.getElementById('viz-anim-label');
     if (label) label.textContent = 'T=' + pt.timestep + ' / ' + (batchPoints.length + 1);
 
+    var img = document.getElementById('viz-batch-gif');
+    if (img && currentBatchIdx >= 0) {
+      img.src = frameSrc(currentBatchIdx, animStep);
+    }
   }
 
   function initAnimUI() {
-    animStep = -1;
+    animStep = 0;
     animSpeedLevel = 2;
 
     var slider = document.getElementById('viz-anim-slider');
@@ -294,8 +293,8 @@
     var speedLabel = document.getElementById('viz-anim-speed-label');
     if (speedLabel) speedLabel.textContent = SPEEDS[animSpeedLevel] + 'x';
 
-    hideCurrentMarker();
     stopAnimation();
+    renderAnimStep();
     startAnimation();
   }
 
@@ -331,12 +330,12 @@
     stopAnimation();
     hidePanel('viz-area-panel');
 
+    currentBatchIdx = batchIdx;
     showBatchTrajectory(batchIdx, 0);
     showPanel('viz-detail-panel');
 
-    var gifImg = document.getElementById('viz-batch-gif');
-    gifImg.src = '';
-    gifImg.src = batchGifPath(batchIdx);
+    var img = document.getElementById('viz-batch-gif');
+    img.src = frameSrc(batchIdx, 0);
     initAnimUI();
   }
 
@@ -456,12 +455,12 @@
 
     stopAnimation();
 
+    currentBatchIdx = batchIdx;
     showBatchTrajectory(batchIdx, 0);
     showPanel('viz-detail-panel');
 
-    var gifImg = document.getElementById('viz-batch-gif');
-    gifImg.src = '';
-    gifImg.src = batchGifPath(batchIdx);
+    var img = document.getElementById('viz-batch-gif');
+    img.src = frameSrc(batchIdx, 0);
     initAnimUI();
   };
 
@@ -474,11 +473,9 @@
   };
 
   window.vizAnimSeek = function (val) {
-    var wasPlaying = animPlaying;
     stopAnimation();
     animStep = parseInt(val, 10);
     renderAnimStep();
-    if (wasPlaying) startAnimation();
   };
 
   window.vizAnimSpeed = function (dir) {
