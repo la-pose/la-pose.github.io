@@ -1,6 +1,17 @@
 .DS_Store
+.venv/
+tmp_blurit/
 visualizations.zip
 visualizations/step_120000/tsne_data.npz
+
+# Utility scripts (not part of the site)
+anonymize_gif*.py
+
+# Old/debug anonymization artifacts
+visualizations/step_120000/batch_videos_anonymous/
+visualizations/step_120000/cmp_*
+visualizations/step_120000/compare.html
+visualizations/step_120000/comparison_*
 
 # Large video files for YouTube driving demos (host separately or force-add when ready)
 # videos/opendv/
