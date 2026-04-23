@@ -98,15 +98,6 @@
                 </a>
               </span>
 
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
           
 
 
@@ -126,8 +117,8 @@
         <div class="column is-full-width">
       
           <div>
-            <video autoplay loop muted playsinline webkit-playsinline preload="metadata">
-              <source src="resources/teaser.mp4" type="video/mp4">
+            <video autoplay loop muted playsinline webkit-playsinline preload="auto" controls controlslist="nodownload">
+              <source src="resources/la-pose_teaser_v2_720p.mp4" type="video/mp4">
             </video>
           </div>
       
@@ -325,7 +316,7 @@
         <div class="yt-section-desc">
           <strong>LA-Pose</strong> generalizes to uncurated YouTube driving footage across diverse conditions.
           Below we show predicted camera trajectories (right) alongside the original video (left) on
-          scenes spanning nighttime, chaotic traffic, mountain roads, rain, and tunnels.
+          scenes spanning nighttime, crowded traffic, mountain roads, rain, and tunnels.
           Videos are sourced from the <a href="https://github.com/OpenDriveLab/DriveAGI/tree/main/opendv" target="_blank" rel="noopener">OpenDV-YouTube</a> dataset.
         </div>
 
@@ -335,7 +326,7 @@
               <a class="nav-link active" onclick="switchYTCategory('night')"><i class="fas fa-moon"></i> Night</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" onclick="switchYTCategory('chaos')"><i class="fas fa-traffic-light"></i> Chaos</a>
+              <a class="nav-link" onclick="switchYTCategory('chaos')"><i class="fas fa-traffic-light"></i> Crowded</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" onclick="switchYTCategory('mountain')"><i class="fas fa-mountain"></i> Mountain</a>
