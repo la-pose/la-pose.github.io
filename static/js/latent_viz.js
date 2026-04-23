@@ -3,7 +3,6 @@
 
   var DATA_PATH = './visualizations/step_120000/tsne_data.json';
   var FRAMES_PATH = './visualizations/step_120000/frames/';
-  var VIDEO_PATH = './visualizations/step_120000/batch_videos_anonymous_blurit/';
   var ITEMS_PER_PAGE = 6;
 
   var vizData = null;
@@ -53,10 +52,6 @@
     }
     preloadedBatches[batchIdx] = Promise.all(promises);
     return preloadedBatches[batchIdx];
-  }
-
-  function batchGifPath(batchIdx) {
-    return VIDEO_PATH + 'batch_' + pad(batchIdx, 3) + '.gif';
   }
 
   function yawDirection(val) {

@@ -8,7 +8,7 @@ visualizations/step_120000/tsne_data.npz
 anonymize_gif*.py
 
 # Old/debug anonymization artifacts
-visualizations/step_120000/batch_videos_anonymous/
+visualizations/step_120000/batch_videos_anonymous*/
 visualizations/step_120000/cmp_*
 visualizations/step_120000/compare.html
 visualizations/step_120000/comparison_*
