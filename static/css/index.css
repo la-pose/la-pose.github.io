@@ -799,31 +799,153 @@ video {
   transition: width 0.3s ease;
 }
 
+/* Intro overlay — first-interaction onboarding over the plot */
+
+.viz-intro-overlay {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  right: 12px;
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 247, 250, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 8px;
+  z-index: 20;
+  cursor: pointer;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  font-family: 'Google Sans', sans-serif;
+}
+
+.viz-intro-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.viz-intro-card {
+  background: #fff;
+  border: 1px solid #e8eaed;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 28px 40px 22px;
+  max-width: 520px;
+  text-align: center;
+  animation: vizIntroBreathe 1.6s ease-in-out infinite;
+}
+
+.viz-intro-overlay:hover .viz-intro-card,
+.viz-intro-overlay:hover .viz-intro-cta {
+  animation-play-state: paused;
+}
+
+@keyframes vizIntroBreathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+  50% {
+    transform: scale(1.025);
+    box-shadow: 0 16px 44px rgba(50, 115, 220, 0.22);
+  }
+}
+
+.viz-intro-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #363636;
+  margin-bottom: 18px;
+}
+
+.viz-intro-title i {
+  color: #3273dc;
+  margin-right: 8px;
+}
+
+.viz-intro-hints {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.viz-intro-hint {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 1em;
+  color: #5a5a5a;
+}
+
+.viz-intro-hint i {
+  color: #3273dc;
+  width: 20px;
+  text-align: center;
+  font-size: 1.05em;
+}
+
+.viz-intro-hint strong {
+  color: #363636;
+  font-weight: 600;
+}
+
+.viz-intro-cta {
+  font-size: 0.85em;
+  color: #7a7a7a;
+  letter-spacing: 0.02em;
+  padding-top: 12px;
+  border-top: 1px dashed #e8eaed;
+  animation: vizIntroCtaPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes vizIntroCtaPulse {
+  0%, 100% {
+    opacity: 0.6;
+    color: #7a7a7a;
+  }
+  50% {
+    opacity: 1;
+    color: #3273dc;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viz-intro-card,
+  .viz-intro-cta {
+    animation: none;
+  }
+}
+
 .viz-instructions {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 32px;
-  padding: 10px 0 4px;
-  font-size: 0.85em;
-  color: #7a7a7a;
+  padding: 14px 0 6px;
+  font-size: 1em;
+  color: #5a5a5a;
   font-family: 'Google Sans', sans-serif;
 }
 
 .viz-instructions i {
-  margin-right: 5px;
+  margin-right: 7px;
   color: #3273dc;
 }
 
 .viz-clear-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 4px 14px;
+  gap: 6px;
+  padding: 6px 18px;
   border: 1.5px solid #dbdbdb;
-  border-radius: 16px;
+  border-radius: 18px;
   background: #fff;
   color: #7a7a7a;
-  font-size: 0.85em;
+  font-size: 1em;
   font-family: 'Google Sans', sans-serif;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -870,15 +992,15 @@ video {
 
 .viz-overlay-close {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 24px;
-  height: 24px;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
   border: none;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
-  color: #666;
-  font-size: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 18px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -886,11 +1008,14 @@ video {
   transition: all 0.15s ease;
   line-height: 1;
   padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 5;
 }
 
 .viz-overlay-close:hover {
-  background: rgba(0, 0, 0, 0.12);
-  color: #333;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  transform: scale(1.08);
 }
 
 .viz-overlay .viz-detail-badges {
@@ -1077,6 +1202,25 @@ video {
 .viz-anim-btn:hover {
   background: #2160c4;
   transform: scale(1.05);
+}
+
+.viz-anim-btn.is-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.viz-anim-btn.is-loading i {
+  opacity: 0.35;
+}
+
+.viz-anim-btn.is-loading::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: vizSpin 0.7s linear infinite;
 }
 
 .viz-anim-track {
@@ -1277,6 +1421,25 @@ video {
     height: 380px;
   }
 
+  .viz-intro-overlay {
+    height: 380px;
+  }
+
+  .viz-intro-card {
+    padding: 22px 24px 18px;
+    max-width: 90%;
+  }
+
+  .viz-intro-title {
+    font-size: 1.05em;
+    margin-bottom: 14px;
+  }
+
+  .viz-intro-hint {
+    font-size: 0.95em;
+    gap: 10px;
+  }
+
   .viz-instructions {
     flex-direction: column;
     gap: 6px;
@@ -1309,6 +1472,10 @@ video {
 
 @media screen and (max-width: 480px) {
   #viz-plot {
+    height: 300px;
+  }
+
+  .viz-intro-overlay {
     height: 300px;
   }
 

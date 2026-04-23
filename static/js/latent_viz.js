@@ -24,6 +24,7 @@
   var batchPoints = [];       // [{x, y, pointIdx, timestep}, ...] sorted by timestep
   var currentBatchIdx = -1;
   var SPEEDS = [0.25, 0.5, 1.0, 2.0, 4.0];
+  var FRAMES_PER_BATCH = 16;
 
   function pad(n, w) {
     var s = '' + n;
@@ -33,6 +34,25 @@
 
   function frameSrc(batchIdx, frameIdx) {
     return FRAMES_PATH + 'b' + pad(batchIdx, 3) + '_f' + pad(frameIdx, 2) + '.jpg';
+  }
+
+  // Preload cache: batchIdx -> Promise that resolves when every frame is in the browser cache.
+  var preloadedBatches = {};
+  function preloadBatchFrames(batchIdx) {
+    if (preloadedBatches[batchIdx]) return preloadedBatches[batchIdx];
+    var promises = [];
+    for (var i = 0; i < FRAMES_PER_BATCH; i++) {
+      (function (idx) {
+        promises.push(new Promise(function (resolve) {
+          var img = new Image();
+          img.onload = resolve;
+          img.onerror = resolve;
+          img.src = frameSrc(batchIdx, idx);
+        }));
+      })(i);
+    }
+    preloadedBatches[batchIdx] = Promise.all(promises);
+    return preloadedBatches[batchIdx];
   }
 
   function batchGifPath(batchIdx) {
@@ -133,7 +153,7 @@
       responsive: true,
       displayModeBar: true,
       displaylogo: false,
-      scrollZoom: true,
+      scrollZoom: false,
       modeBarButtonsToRemove: [
         'autoScale2d', 'hoverClosestCartesian', 'hoverCompareCartesian',
         'toggleSpikelines', 'toImage'
@@ -280,7 +300,7 @@
     }
   }
 
-  function initAnimUI() {
+  function setupAnimUI() {
     animStep = 0;
     animSpeedLevel = 2;
 
@@ -295,7 +315,22 @@
 
     stopAnimation();
     renderAnimStep();
-    startAnimation();
+  }
+
+  function showPreloadIndicator(show) {
+    var btn = document.getElementById('viz-anim-play');
+    if (!btn) return;
+    btn.classList.toggle('is-loading', !!show);
+  }
+
+  function preloadThenPlay(batchIdx) {
+    showPreloadIndicator(true);
+    preloadBatchFrames(batchIdx).then(function () {
+      showPreloadIndicator(false);
+      // User may have clicked a different point while we were preloading.
+      if (currentBatchIdx !== batchIdx) return;
+      startAnimation();
+    });
   }
 
   // ── Panel helpers ──
@@ -336,7 +371,8 @@
 
     var img = document.getElementById('viz-batch-gif');
     img.src = frameSrc(batchIdx, 0);
-    initAnimUI();
+    setupAnimUI();
+    preloadThenPlay(batchIdx);
   }
 
   function shuffleArray(arr) {
@@ -421,6 +457,11 @@
     batchPoints = [];
   };
 
+  window.vizDismissIntro = function () {
+    var overlay = document.getElementById('viz-intro-overlay');
+    if (overlay) overlay.classList.add('hidden');
+  };
+
   window.vizCloseArea = function () {
     hidePanel('viz-area-panel');
     areaIndices = [];
@@ -461,7 +502,8 @@
 
     var img = document.getElementById('viz-batch-gif');
     img.src = frameSrc(batchIdx, 0);
-    initAnimUI();
+    setupAnimUI();
+    preloadThenPlay(batchIdx);
   };
 
   window.vizAnimToggle = function () {
