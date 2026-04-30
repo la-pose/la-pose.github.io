@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="description"
@@ -9,22 +9,24 @@
   <title>LA-Pose</title>
 
   <!--  Open Graph / Facebook -->
-  <meta property="og:title" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://la-pose.github.io/" />
-  <meta property="og:description" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation" />
+  <meta property="og:title" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://la-pose.github.io/">
+  <meta property="og:description" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation">
+  <meta property="og:image" content="https://la-pose.github.io/resources/hero-teaser-final-poster.jpg">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation">
   <meta name="twitter:description" content="LA-Pose: Latent Action Pretraining Meets Pose Estimation">
+  <meta name="twitter:image" content="https://la-pose.github.io/resources/hero-teaser-final-poster.jpg">
 
   <!-- Bootstrap -->
   <link rel="stylesheet" href="./static/css/bootstrap-4.4.1.css">
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
-  
+
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
@@ -41,151 +43,175 @@
 
 </head>
 <body>
+<a class="skip-link" href="#abstract">Skip to content</a>
 
+<nav class="site-nav" aria-label="Primary navigation">
+  <a class="site-mark" href="#top" aria-label="LA-Pose home">
+    <span class="site-mark-dot"></span>
+    <span>LA-Pose</span>
+  </a>
+  <div class="site-nav-links">
+    <a href="#abstract">Abstract</a>
+    <a href="#method">Method</a>
+    <a href="#latent-action-viz">Latent Space</a>
+    <a href="#results">Results</a>
+    <a href="#youtube-driving">Wild Videos</a>
+    <a href="https://wayve.ai/thinking/la-pose/" target="_blank" rel="noopener">Blog</a>
+    <a href="#BibTeX">Citation</a>
+  </div>
+  <a class="site-nav-paper" href="resources/la_pose.pdf">
+    <i class="fas fa-file-pdf" aria-hidden="true"></i>
+    <span>Paper</span>
+  </a>
+</nav>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title" style="margin-bottom: 0; font-weight: 800;">
-            LA-Pose
-          </h1>
-          <h2 class="title is-3 publication-title" style="margin-top: 0; margin-bottom: 20px; font-weight: 600; color: #4a4a4a;">
-            Latent Action Pretraining Meets Pose Estimation
-          </h2>
-          <h3 class="subtitle is-4 publication-subtitle" style="margin-top: 0; margin-bottom: 18px; font-weight: 600; color: #7a7a7a;">
-            CVPR 2026
-          </h3>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://eric-zqwang.github.io/">Zhengqing Wang</a>*<sup>1,2</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="author-block">
-              <a href="https://www.linkedin.com/in/saurabh-nair-31a13877/">Saurabh Nair</a>*<sup>1</sup></span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="author-block">
-              <a href="https://www.linkedin.com/in/prajwalchidananda/">Prajwal Chidananda</a>*<sup>1</sup>
-            </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="author-block">
-              <a href="https://sites.google.com/view/pujith-kachana/">Pujith Kachana</a><sup>1</sup>
-            </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="author-block">
-              <a href="https://samwli.github.io/">Samuel Li</a><sup>1</sup>
-            </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="author-block">
-              <a href="https://mattabrown.github.io/">Matthew Brown</a><sup>1</sup>
-            </span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="author-block">
-              <a href="https://yasu-furukawa.github.io/">Yasutaka Furukawa</a><sup>1,2</sup>
-            </span>
-          </div>
+<section class="project-hero" id="top">
+  <video class="project-hero-video" autoplay loop muted playsinline webkit-playsinline preload="metadata" poster="resources/hero-teaser-final-poster.jpg" aria-hidden="true">
+    <source src="resources/hero-teaser-final.mp4" type="video/mp4">
+  </video>
+  <div class="project-hero-scrim" aria-hidden="true"></div>
+  <div class="project-hero-grid" aria-hidden="true"></div>
 
-          <div class="is-size-5 publication-authors affiliations">
-            <span class="author-block"><sup>1</sup>Wayve</span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <span class="author-block"><sup>2</sup>Simon Fraser University</span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <p style="font-size: 0.85em; color: #999; margin-top: 8px;">* Equal contribution</p>
-          </div>
+  <div class="container is-max-desktop project-hero-content">
+    <div class="venue-pill">
+      <span>CVPR 2026</span>
+      <span>Self-supervised camera pose estimation</span>
+    </div>
+    <h1 class="project-title">LA-Pose</h1>
+    <p class="project-subtitle">Latent Action Pretraining Meets Pose Estimation</p>
+    <p class="project-lede">
+      A feed-forward pose estimator that converts self-supervised latent actions learned from large-scale driving video into accurate, generalizable camera motion.
+    </p>
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="resources/la_pose.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
+    <div class="hero-actions" role="group" aria-label="Project links">
+      <a href="resources/la_pose.pdf" class="hero-action hero-action-primary">
+        <i class="fas fa-file-pdf" aria-hidden="true"></i>
+        <span>Read Paper</span>
+      </a>
+      <a href="https://wayve.ai/thinking/la-pose/" class="hero-action" target="_blank" rel="noopener">
+        <i class="fas fa-newspaper" aria-hidden="true"></i>
+        <span>Blog Post</span>
+      </a>
+      <a href="#youtube-driving" class="hero-action">
+        <i class="fas fa-play" aria-hidden="true"></i>
+        <span>Wild Demos</span>
+      </a>
+    </div>
 
-          
+    <div class="publication-authors hero-authors">
+      <span class="author-block">
+        <a href="https://eric-zqwang.github.io/">Zhengqing Wang</a>*<sup>1,2</sup>
+      </span>
+      <span class="author-block">
+        <a href="https://www.linkedin.com/in/saurabh-nair-31a13877/">Saurabh Nair</a>*<sup>1</sup>
+      </span>
+      <span class="author-block">
+        <a href="https://www.linkedin.com/in/prajwalchidananda/">Prajwal Chidananda</a>*<sup>1</sup>
+      </span>
+      <span class="author-block">
+        <a href="https://sites.google.com/view/pujith-kachana/">Pujith Kachana</a><sup>1</sup>
+      </span>
+      <span class="author-block">
+        <a href="https://samwli.github.io/">Samuel Li</a><sup>1</sup>
+      </span>
+      <span class="author-row-break" aria-hidden="true"></span>
+      <span class="author-block">
+        <a href="https://mattabrown.github.io/">Matthew Brown</a><sup>1</sup>
+      </span>
+      <span class="author-block">
+        <a href="https://yasu-furukawa.github.io/">Yasutaka Furukawa</a><sup>1,2</sup>
+      </span>
+    </div>
 
-
-            </div>
-
-          </div>
-        </div>
-      </div>
+    <div class="hero-affiliations">
+      <span><sup>1</sup>Wayve</span>
+      <span><sup>2</sup>Simon Fraser University</span>
+      <span>* Equal contribution</span>
     </div>
   </div>
 </section>
 
-<section class="hero teaser">
+<section class="section teaser-section" id="teaser">
   <div class="container is-max-desktop">
-    <div class="hero-body">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-full-width">
-      
-          <div>
-            <video autoplay loop muted playsinline webkit-playsinline preload="auto" controls controlslist="nodownload">
-              <source src="resources/la-pose_teaser_v2_1080p.mp4" type="video/mp4">
-            </video>
-          </div>
-      
-          <div class="tldr-caption">
-            <strong>TL;DR</strong> &mdash; Self-supervised learning of a latent action space from unlabelled video, repurposed for accurate and generalizable camera pose estimation.
-          </div>
-        </div>
-      </div>
+    <div class="section-heading is-centered">
+      <p class="section-eyebrow">Project Teaser</p>
+      <h2 class="title is-3">Learning camera motion from unlabelled driving video</h2>
+      <p class="section-intro">
+        LA-Pose learns a latent action space without pose labels, then reuses those motion-centric features for efficient camera pose estimation.
+      </p>
     </div>
+
+    <figure class="feature-video-frame">
+      <video autoplay loop muted playsinline webkit-playsinline preload="auto" controls controlslist="nodownload" poster="resources/hero-poster.jpg">
+        <source src="resources/la-pose_teaser_v2_1080p.mp4" type="video/mp4">
+      </video>
+      <figcaption class="tldr-caption">
+        <strong>TL;DR</strong> &mdash; Self-supervised learning of a latent action space from unlabelled video, repurposed for accurate and generalizable camera pose estimation.
+      </figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="section">
+<section class="section content-section" id="abstract">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
+    <div class="section-heading is-centered">
+      <p class="section-eyebrow">Abstract</p>
+      <h2 class="title is-3">A scalable route to accurate camera pose</h2>
+    </div>
+
+    <div class="abstract-panel content">
+      <p>
+        This paper revisits camera pose estimation through the lens of self-supervised pretraining, focusing on inverse dynamics pretraining as a scalable alternative to the current trend of fully supervised training with 3D annotations. Concretely, we employ inverse- and forward dynamics models to learn latent action representations, similar to Genie from large-scale driving videos. Our idea is simple yet effective. Existing methods use latent actions in their original capacity, that is, as "action" conditioning of world-models or as proxies of robot "action" parameters in policy networks. Our method, dubbed LA-Pose, repurposes the latent action features as inputs to a camera pose estimator, finetuned on a limited set of high quality 3D annotations. This formulation enables accurate and generalizable pose prediction while maintaining feed-forward efficiency. Extensive experiments on driving benchmarks show that LA-Pose achieves competitive and even superior performance to state-of-the-art methods while using orders of magnitude less labeled data. Concretely, on the Waymo and PandaSet benchmarks, LA-Pose achieves over 10% higher pose accuracy than recent feed-forward methods. To our knowledge, this work is the first to demonstrate the power of inverse-dynamics self-supervised learning for pose estimation.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section method-section" id="method">
+  <div class="container is-max-desktop">
+    <div class="section-heading is-centered">
+      <p class="section-eyebrow">Method</p>
+      <h2 class="title is-3">Latent action pretraining, then pose post-training</h2>
+      <p class="section-intro">
+        The same motion representation learned from consecutive frames becomes the signal for metric camera pose prediction.
+      </p>
+    </div>
+
+    <figure class="media-container method-figure">
+      <img src="resources/method.png" alt="LA-Pose method overview">
+      <figcaption class="method-caption">
+        Our framework consists of two stages: <strong>latent action pretraining</strong> and <strong>camera pose post-training</strong>.
+        In the <strong>pretraining stage (top)</strong>, an inverse&ndash;forward dynamics model learns latent actions from consecutive video frames by predicting future tokens through a self-supervised inverse-dynamics objective. These latent actions encode compact, motion-centric representations of frame-to-frame dynamics.
+        In the <strong>post-training stage (bottom left)</strong>, we attach a lightweight pose estimation head to the pretrained inverse dynamics encoder. The head predicts relative camera translation, rotation (quaternion), field-of-view, and metric scale from the latent actions.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+
+<section class="section viz-section" id="latent-action-viz">
+  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            This paper revisits camera pose estimation through the lens of self-supervised pretraining, focusing on inverse dynamics pretraining as a scalable alternative to the current trend of fully supervised training with 3D annotations. Concretely, we employ inverse- and forward dynamics models to learn latent action representations, similar to Genie from large-scale driving videos. Our idea is simple yet effective. Existing methods use latent actions in their original capacity, that is, as "action" conditioning of world-models or as proxies of robot "action" parameters in policy networks. Our method, dubbed LA-Pose, repurposes the latent action features as inputs to a camera pose estimator, finetuned on a limited set of high quality 3D annotations. This formulation enables accurate and generalizable pose prediction while maintaining feed-forward efficiency. Extensive experiments on driving benchmarks show that LA-Pose achieves competitive and even superior performance to state-of-the-art methods while using orders of magnitude less labeled data. Concretely, on the Waymo and PandaSet benchmarks, LA-Pose achieves over 10% higher pose accuracy than recent feed-forward methods. To our knowledge, this work is the first to demonstrate the power of inverse-dynamics self-supervised learning for pose estimation.
+      <div class="column is-full-width">
+        <div class="section-heading is-centered">
+          <p class="section-eyebrow">Interactive Latent Space</p>
+          <h2 class="title is-3">Motion structure emerges without pose labels</h2>
+          <p class="section-intro">
+            Toggle the coloring, click points, or select a cluster to inspect the driving sequences behind the representation.
           </p>
         </div>
-      </div>
-    </div>
-    
-  </div>
-</section>
 
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Method Overview</h2>
-        <figure class="media-container">
-          <div>
-            <figcaption class="method-caption">
-              Our framework consists of two stages: <strong>latent action pretraining</strong> and <strong>camera pose post-training</strong>.
-              In the <strong>pretraining stage (top)</strong>, an inverse&ndash;forward dynamics model learns latent actions from consecutive video frames by predicting future tokens through a self-supervised inverse-dynamics objective. These latent actions encode compact, motion-centric representations of frame-to-frame dynamics.
-              In the <strong>post-training stage (bottom left)</strong>, we attach a lightweight pose estimation head to the pretrained inverse dynamics encoder. The head predicts relative camera translation, rotation (quaternion), field-of-view, and metric scale from the latent actions.
-            </figcaption>
-            <img src="resources/method.png" alt="LA-Pose method overview"
-                 style="margin-top: 20px;" />
-          </div>
-        </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section" id="latent-action-viz">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Exploring the Latent Action Space</h2>
-
-        <div class="method-caption" style="margin-bottom: 30px;">
+        <div class="method-caption viz-caption">
           Each point below represents a <strong>latent action</strong> &mdash; a learned representation of the camera motion between two consecutive driving frames, projected to 2D via t-SNE. Points that are close together encode similar motions. Toggle the coloring to reveal how <strong>translation speed</strong> and <strong>yaw (turning direction)</strong> naturally separate in the learned space. Click any point to view its driving sequence, or drag-select a region to browse all frame pairs within a cluster.
         </div>
 
         <div class="viz-toggle-container">
-          <button class="viz-toggle active" data-mode="translation" onclick="vizSetMode('translation')">
+          <button class="viz-toggle active" type="button" data-mode="translation" onclick="vizSetMode('translation')">
             <i class="fas fa-tachometer-alt"></i> Translation Speed
           </button>
-          <button class="viz-toggle" data-mode="yaw" onclick="vizSetMode('yaw')">
+          <button class="viz-toggle" type="button" data-mode="yaw" onclick="vizSetMode('yaw')">
             <i class="fas fa-compass"></i> Yaw (Turning)
           </button>
         </div>
@@ -219,12 +245,12 @@
           </div>
 
           <div id="viz-detail-panel" class="viz-overlay">
-            <button class="viz-overlay-close" onclick="vizCloseDetail()">&times;</button>
+            <button class="viz-overlay-close" type="button" aria-label="Close detail panel" onclick="vizCloseDetail()">&times;</button>
             <div class="viz-overlay-media">
-              <img id="viz-batch-gif" alt="Batch sequence" />
+              <img id="viz-batch-gif" src="visualizations/step_120000/frames/b000_f00.jpg" alt="Batch sequence">
             </div>
             <div class="viz-anim-toolbar">
-              <button class="viz-anim-btn" id="viz-anim-play" onclick="vizAnimToggle()">
+              <button class="viz-anim-btn" id="viz-anim-play" type="button" aria-label="Play latent action sequence" onclick="vizAnimToggle()">
                 <i class="fas fa-play" id="viz-anim-icon"></i>
               </button>
               <div class="viz-anim-track">
@@ -233,9 +259,9 @@
                 <span class="viz-anim-label" id="viz-anim-label">T=1 / 15</span>
               </div>
               <div class="viz-anim-speed">
-                <button class="viz-speed-btn" onclick="vizAnimSpeed(-1)"><i class="fas fa-minus"></i></button>
+                <button class="viz-speed-btn" type="button" aria-label="Decrease animation speed" onclick="vizAnimSpeed(-1)"><i class="fas fa-minus"></i></button>
                 <span id="viz-anim-speed-label">1.0x</span>
-                <button class="viz-speed-btn" onclick="vizAnimSpeed(1)"><i class="fas fa-plus"></i></button>
+                <button class="viz-speed-btn" type="button" aria-label="Increase animation speed" onclick="vizAnimSpeed(1)"><i class="fas fa-plus"></i></button>
               </div>
             </div>
           </div>
@@ -243,7 +269,7 @@
           <div class="viz-instructions">
             <span><i class="fas fa-hand-pointer"></i> Click a point to view its driving sequence</span>
             <span><i class="fas fa-vector-square"></i> Box-select a region to browse frame pairs</span>
-            <button class="viz-clear-btn" onclick="vizClearSelection()">
+            <button class="viz-clear-btn" type="button" onclick="vizClearSelection()">
               <i class="fas fa-undo"></i> Clear
             </button>
           </div>
@@ -253,12 +279,12 @@
           <div class="viz-panel-header">
             <h3>Frame Pairs from Selected Region</h3>
             <span class="viz-area-count" id="viz-area-count"></span>
-            <button class="viz-close-btn" onclick="vizCloseArea()">&times;</button>
+            <button class="viz-close-btn" type="button" aria-label="Close selected region panel" onclick="vizCloseArea()">&times;</button>
           </div>
           <div class="viz-area-pagination" id="viz-area-pagination">
-            <button id="viz-prev-page" onclick="vizChangePage(-1)"><i class="fas fa-chevron-left"></i> Prev</button>
+            <button id="viz-prev-page" type="button" onclick="vizChangePage(-1)"><i class="fas fa-chevron-left"></i> Prev</button>
             <span id="viz-page-info"></span>
-            <button id="viz-next-page" onclick="vizChangePage(1)">Next <i class="fas fa-chevron-right"></i></button>
+            <button id="viz-next-page" type="button" onclick="vizChangePage(1)">Next <i class="fas fa-chevron-right"></i></button>
           </div>
           <div id="viz-area-grid" class="viz-frame-grid"></div>
         </div>
@@ -269,15 +295,19 @@
 </section>
 
 
-<section class="section">
+<section class="section results-section" id="results">
   <div class="container is-max-desktop">
-
-    <!-- Results. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+        <div class="section-heading is-centered">
+          <p class="section-eyebrow">Benchmark Results</p>
+          <h2 class="title is-3">Qualitative camera trajectory predictions</h2>
+          <p class="section-intro">
+            Side-by-side driving videos and predicted trajectories on two standard autonomous driving benchmarks.
+          </p>
+        </div>
 
-        <div class="container" style="margin-top: 16px;">
+        <div class="results-panel">
           <ul class="nav nav-tabs nav-fill nav-justified responsive-nav" id="results-dataset-tabs">
             <li class="nav-item">
               <a class="nav-link active" onclick="switchDataset(0)">Waymo</a>
@@ -288,12 +318,12 @@
           </ul>
           <div>
             <div id="dataset-panel-0">
-              <video autoplay loop muted playsinline webkit-playsinline preload="metadata" style="width:100%;max-width:100%;border-radius:0 0 10px 10px;display:block;">
+              <video class="dataset-video" autoplay loop muted playsinline webkit-playsinline preload="metadata">
                 <source src="resources/waymo.mp4" type="video/mp4">
               </video>
             </div>
             <div id="dataset-panel-1" style="display:none;">
-              <video loop muted playsinline webkit-playsinline preload="metadata" style="width:100%;max-width:100%;border-radius:0 0 10px 10px;display:block;">
+              <video class="dataset-video" loop muted playsinline webkit-playsinline preload="metadata">
                 <source src="resources/pandaset.mp4" type="video/mp4">
               </video>
             </div>
@@ -311,7 +341,13 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3 has-text-centered">In-the-Wild YouTube Driving Videos</h2>
+        <div class="section-heading is-centered">
+          <p class="section-eyebrow">Generalization</p>
+          <h2 class="title is-3">In-the-wild YouTube driving videos</h2>
+          <p class="section-intro">
+            Predicted camera trajectories remain stable across night, traffic, mountain roads, rain, and tunnels.
+          </p>
+        </div>
 
         <div class="yt-section-desc">
           <strong>LA-Pose</strong> generalizes to uncurated YouTube driving footage across diverse conditions.
@@ -320,7 +356,7 @@
           Videos are sourced from the <a href="https://github.com/OpenDriveLab/DriveAGI/tree/main/opendv" target="_blank" rel="noopener">OpenDV-YouTube</a> dataset.
         </div>
 
-        <div class="container" style="margin-top: 16px;">
+        <div class="wild-video-panel">
           <ul class="nav nav-tabs nav-fill nav-justified responsive-nav" id="yt-category-tabs">
             <li class="nav-item">
               <a class="nav-link active" onclick="switchYTCategory('night')"><i class="fas fa-moon"></i> Night</a>
@@ -340,7 +376,7 @@
           </ul>
 
           <div class="yt-carousel-wrapper">
-          <button class="yt-arrow" onclick="ytCarouselNav(-1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="yt-arrow" type="button" aria-label="Previous video" onclick="ytCarouselNav(-1)"><i class="fas fa-chevron-left"></i></button>
           <div id="yt-carousel" class="yt-carousel">
             <div class="yt-carousel-inner">
               <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/26_9x6sEj2Y_poster.jpg" playsinline><source src="videos/opendv/night/26_9x6sEj2Y.mp4" type="video/mp4"></video></div>
@@ -373,7 +409,7 @@
             </div>
             <div class="yt-carousel-counter" id="yt-carousel-counter"></div>
           </div>
-          <button class="yt-arrow" onclick="ytCarouselNav(1)"><i class="fas fa-chevron-right"></i></button>
+          <button class="yt-arrow" type="button" aria-label="Next video" onclick="ytCarouselNav(1)"><i class="fas fa-chevron-right"></i></button>
           </div>
 
         </div>
@@ -383,46 +419,87 @@
 </section>
 
 
-<section class="section" id="BibTeX">
+<section class="section citation-section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title has-text-centered">BibTeX</h2>
-    <pre class="bibtex-container"><code>@inproceedings{Wang2026LAPose,
+    <div class="section-heading is-centered">
+      <p class="section-eyebrow">Citation</p>
+      <h2 class="title is-3">BibTeX</h2>
+    </div>
+    <div class="bibtex-shell">
+      <button class="copy-bibtex-btn" type="button" onclick="copyBibtex(this)">
+        <i class="fas fa-copy" aria-hidden="true"></i>
+        <span>Copy</span>
+      </button>
+      <pre class="bibtex-container"><code id="bibtex-code">@inproceedings{Wang2026LAPose,
   author    = {Wang, Zhengqing and Nair, Saurabh and Chidananda, Prajwal and Kachana, Pujith and Li, Samuel and Brown, Matthew and Furukawa, Yasutaka},
   title     = {LA-Pose: Latent Action Pretraining Meets Pose Estimation},
   booktitle = {CVPR},
   year      = {2026},
 }</code></pre>
+    </div>
   </div>
 </section>
 
-<section class="section" id="Acknowledgements">
+<section class="section acknowledgements-section" id="Acknowledgements">
   <div class="container is-max-desktop content">
-    <h2 class="title">Acknowledgments</h2>
-    We thank Jaskaran Singh Sodhi and Saloni Puran Parekh for their help with data construction, and Anner De Jong for engineering support. We are grateful to Thomas Kollar and Gianluca Corrado for reviewing the paper and providing valuable feedback. We also thank Shreyas Rajesh and Soham Phade for their early contributions to the idea of Latent-Actions.
+    <div class="section-heading is-centered">
+      <p class="section-eyebrow">Acknowledgments</p>
+      <h2 class="title is-3">Contributors and support</h2>
+    </div>
+    <p class="acknowledgements-copy">
+      We thank Jaskaran Singh Sodhi and Saloni Puran Parekh for their help with data construction, and Anner De Jong for engineering support. We are grateful to Thomas Kollar and Gianluca Corrado for reviewing the paper and providing valuable feedback. We also thank Shreyas Rajesh and Soham Phade for their early contributions to the idea of Latent-Actions.
+    </p>
   </div>
 </section>
 
 
 <footer class="footer">
   <div class="container">
-    <div class="content has-text-centered">
+    <div class="content has-text-centered footer-copy">
+      <p>
+        This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>.
+        This webpage template is adapted from <a href="https://clift-nvs.github.io/">CLiFT</a>, which is originally from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+      </p>
     </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-            This webpage template is adapted from <a href="https://clift-nvs.github.io/">CLiFT</a>, which is originally from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. 
-          </p>
-        </div>
-      </div>
-          <p></p>
-        </div>
-      </div>
+  </div>
 </footer>
 
 <script>
+function copyBibtex(button) {
+  var code = document.getElementById('bibtex-code');
+  if (!code) return;
+
+  var text = code.innerText;
+  var original = button.innerHTML;
+
+  function showCopied() {
+    button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i><span>Copied</span>';
+    setTimeout(function() {
+      button.innerHTML = original;
+    }, 1400);
+  }
+
+  function fallbackCopy() {
+    var textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'absolute';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    showCopied();
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(showCopied).catch(fallbackCopy);
+  } else {
+    fallbackCopy();
+  }
+}
+
 function switchDataset(idx) {
   var tabs = document.getElementById('results-dataset-tabs').children;
   for (var i = 0; i < tabs.length; i++) {
