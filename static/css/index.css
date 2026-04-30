@@ -1603,6 +1603,18 @@ body::selection {
   white-space: nowrap;
 }
 
+.site-nav-links .site-nav-disabled {
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: #9ca3af;
+  cursor: not-allowed;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  opacity: 0.58;
+  white-space: nowrap;
+}
+
 .site-nav-links a:hover {
   background: rgba(36, 99, 235, 0.08);
   color: var(--lapose-blue);
@@ -1787,6 +1799,16 @@ body::selection {
 .hero-action-primary:hover {
   background: #eff6ff;
   color: var(--lapose-blue);
+}
+
+.hero-action-disabled,
+.hero-action-disabled:hover {
+  transform: none;
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.48);
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .hero-authors {
@@ -2037,14 +2059,16 @@ body::selection {
 }
 
 .method-figure {
+  --method-figure-inset: 28px;
   max-width: 1040px;
   overflow: hidden;
-  padding: 0;
+  padding: 24px var(--method-figure-inset) 0;
 }
 
 .media-container.method-figure img {
   max-width: none;
-  border-radius: 0;
+  margin: 0 auto 22px;
+  border-radius: 6px;
 }
 
 .method-caption {
@@ -2065,6 +2089,13 @@ body::selection {
 
 .method-caption strong {
   color: var(--lapose-blue);
+}
+
+.method-figure .method-caption {
+  margin-right: calc(-1 * var(--method-figure-inset));
+  margin-left: calc(-1 * var(--method-figure-inset));
+  padding-right: var(--method-figure-inset);
+  padding-left: var(--method-figure-inset);
 }
 
 .viz-caption {
@@ -2220,21 +2251,25 @@ body::selection {
 .bibtex-shell {
   position: relative;
   overflow: hidden;
+  background: #fff;
 }
 
 pre.bibtex-container {
   margin: 0;
-  padding: 26px;
+  padding: 30px 128px 30px 28px;
   border: 0;
   border-left: 4px solid var(--lapose-blue);
   border-radius: 0;
-  background: #0f172a;
-  color: #e5edf8;
+  background: linear-gradient(180deg, #fbfdff 0%, #f8fafc 100%);
+  color: #1f2937;
   box-shadow: none;
+  font-size: 0.92rem;
+  line-height: 1.7;
 }
 
 pre.bibtex-container code {
   color: inherit;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
 }
 
 .copy-bibtex-btn {
@@ -2248,18 +2283,19 @@ pre.bibtex-container code {
   gap: 8px;
   min-height: 36px;
   padding: 0 12px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(36, 99, 235, 0.18);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.10);
+  background: #2563eb;
   color: #fff;
   font-family: 'Google Sans', sans-serif;
   font-size: 0.84rem;
   font-weight: 800;
   cursor: pointer;
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.18);
 }
 
 .copy-bibtex-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: #1d4ed8;
 }
 
 .acknowledgements-copy {
