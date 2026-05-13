@@ -2154,7 +2154,7 @@ body::selection {
 .results-panel,
 .wild-video-panel {
   overflow: hidden;
-  margin-top: 8px;
+  margin: 0 auto 8px;
 }
 
 .results-panel .nav,
@@ -2198,24 +2198,8 @@ body::selection {
   background: #05070b;
 }
 
-.yt-section-desc {
-  max-width: 920px;
-  margin: 0 auto 22px;
-  padding: 18px 22px;
-  border: 1px solid var(--lapose-line);
-  border-left: 4px solid var(--lapose-amber);
-  border-radius: 8px;
-  background: #fff;
-  color: var(--lapose-ink-soft);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
-}
-
-.yt-section-desc strong {
-  color: var(--lapose-amber);
-}
-
 .yt-carousel-wrapper {
-  gap: 16px;
+  gap: 14px;
   padding: 18px;
   margin-top: 0;
   background: #fff;
@@ -2224,21 +2208,6 @@ body::selection {
 .yt-carousel {
   border-radius: 8px;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.yt-arrow {
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--lapose-line);
-  background: #fff;
-  color: var(--lapose-ink-soft);
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
-}
-
-.yt-arrow:hover {
-  background: var(--lapose-blue);
-  border-color: var(--lapose-blue);
-  box-shadow: 0 12px 24px rgba(36, 99, 235, 0.24);
 }
 
 .yt-carousel-counter {
@@ -2547,4 +2516,169 @@ pre.bibtex-container code {
   .yt-carousel-wrapper .yt-arrow:last-child {
     right: 18px;
   }
+}
+
+
+/* In-the-wild media galleries */
+
+.media-subsection-heading {
+  max-width: 1040px;
+  margin: 34px auto 12px;
+  text-align: left;
+}
+
+.media-subsection-heading h3 {
+  margin: 0;
+  color: var(--lapose-ink);
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.18rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.media-subsection-heading p {
+  margin: 4px 0 0;
+  color: var(--lapose-muted);
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.media-subsection-heading a {
+  color: var(--lapose-blue);
+  font-weight: 800;
+}
+
+.media-gallery {
+  max-width: 1040px;
+  border: 1px solid var(--lapose-line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+}
+
+.linkedin-showcase {
+  position: relative;
+  margin: 0 auto;
+  padding: 18px 38px 20px;
+}
+
+.showcase-viewport {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.showcase-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.showcase-track::-webkit-scrollbar {
+  display: none;
+}
+
+.linkedin-embed-card {
+  flex: 0 0 460px;
+  min-width: 0;
+  overflow: hidden;
+  scroll-snap-align: start;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.linkedin-embed-card iframe {
+  display: block;
+  width: 100%;
+  height: 660px;
+  border: 0;
+  background: #fff;
+}
+
+.gallery-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--lapose-line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--lapose-ink-soft);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.10);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-arrow:hover {
+  background: var(--lapose-blue);
+  border-color: var(--lapose-blue);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(36, 99, 235, 0.22);
+  transform: translateY(-1px);
+}
+
+.gallery-arrow:disabled,
+.gallery-arrow[aria-disabled="true"] {
+  opacity: 0.34;
+  cursor: default;
+  box-shadow: none;
+}
+
+.gallery-arrow:disabled:hover,
+.gallery-arrow[aria-disabled="true"]:hover {
+  background: #fff;
+  border-color: var(--lapose-line);
+  color: var(--lapose-ink-soft);
+  transform: none;
+}
+
+.showcase-arrow {
+  position: absolute;
+  top: calc(50% - 18px);
+  z-index: 2;
+}
+
+.showcase-arrow-prev {
+  left: 0;
+}
+
+.showcase-arrow-next {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .linkedin-showcase {
+    padding: 0 0 38px;
+  }
+
+  .linkedin-embed-card {
+    flex-basis: min(380px, calc(100vw - 34px));
+  }
+
+  .showcase-arrow {
+    top: auto;
+    bottom: 0;
+  }
+
+  .showcase-arrow-prev {
+    left: calc(50% - 78px);
+  }
+
+  .showcase-arrow-next {
+    right: calc(50% - 78px);
+  }
+
+  .linkedin-embed-card iframe {
+    height: 600px;
+  }
+
 }

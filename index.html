@@ -154,7 +154,7 @@
     </div>
 
     <figure class="feature-video-frame">
-      <video autoplay loop muted playsinline webkit-playsinline preload="auto" controls controlslist="nodownload" poster="resources/hero-poster.jpg">
+      <video autoplay loop muted playsinline webkit-playsinline preload="auto" controls controlslist="nodownload" poster="resources/la-pose-feature.png">
         <source src="resources/LA_Pose_Teaser_updated_v4.mp4" type="video/mp4">
       </video>
       <figcaption class="tldr-caption">
@@ -353,22 +353,64 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
+
         <div class="section-heading is-centered">
           <p class="section-eyebrow">Generalization</p>
-          <h2 class="title is-3">In-the-wild YouTube driving videos</h2>
+          <h2 class="title is-3">In-the-wild driving videos</h2>
           <p class="section-intro">
-            Predicted camera trajectories remain stable across night, traffic, mountain roads, rain, and tunnels.
+            Qualitative trajectory predictions beyond the standard benchmarks, shown through official Wayve posts and uncurated YouTube driving videos.
           </p>
         </div>
 
-        <div class="yt-section-desc">
-          <strong>LA-Pose</strong> generalizes to uncurated YouTube driving footage across diverse conditions.
-          Below we show predicted camera trajectories (right) alongside the original video (left) on
-          scenes spanning nighttime, crowded traffic, mountain roads, rain, and tunnels.
-          Videos are sourced from the <a href="https://github.com/OpenDriveLab/DriveAGI/tree/main/opendv" target="_blank" rel="noopener">OpenDV-YouTube</a> dataset.
+        <div class="media-subsection-heading">
+          <h3>Wayve LA-Pose showcase</h3>
+          <p>Official LinkedIn embeds from the four-day launch series.</p>
         </div>
 
-        <div class="wild-video-panel">
+        <div class="linkedin-showcase media-gallery" aria-label="LA-Pose LinkedIn showcase embeds">
+          <button class="gallery-arrow showcase-arrow showcase-arrow-prev" type="button" aria-label="Previous LinkedIn showcase post" onclick="showcaseNav(-1)">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+
+          <div class="showcase-viewport">
+            <div class="showcase-track" id="showcase-track" role="list" tabindex="0">
+              <article class="linkedin-embed-card" role="listitem">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7457832519258939392"
+                        title="Day 1 LA-Pose Showcase LinkedIn post"
+                        frameborder="0" allowfullscreen="" loading="lazy"></iframe>
+              </article>
+
+              <article class="linkedin-embed-card" role="listitem">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7458172120599183360"
+                        title="Day 2 LA-Pose Showcase LinkedIn post"
+                        frameborder="0" allowfullscreen="" loading="lazy"></iframe>
+              </article>
+
+              <article class="linkedin-embed-card" role="listitem">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7458428615957958656"
+                        title="Day 3 LA-Pose Showcase LinkedIn post"
+                        frameborder="0" allowfullscreen="" loading="lazy"></iframe>
+              </article>
+
+              <article class="linkedin-embed-card" role="listitem">
+                <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:activity:7458560354101456897"
+                        title="Day 4 LA-Pose Showcase LinkedIn post"
+                        frameborder="0" allowfullscreen="" loading="lazy"></iframe>
+              </article>
+            </div>
+          </div>
+
+          <button class="gallery-arrow showcase-arrow showcase-arrow-next" type="button" aria-label="Next LinkedIn showcase post" onclick="showcaseNav(1)">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div class="media-subsection-heading">
+          <h3>YouTube driving videos</h3>
+          <p>Predicted camera trajectories on uncurated scenes spanning night, traffic, mountain roads, rain, and tunnels, with videos sourced from the <a href="https://github.com/OpenDriveLab/DriveAGI/tree/main/opendv" target="_blank" rel="noopener">OpenDV-YouTube</a> dataset.</p>
+        </div>
+
+        <div class="wild-video-panel media-gallery">
           <ul class="nav nav-tabs nav-fill nav-justified responsive-nav" id="yt-category-tabs">
             <li class="nav-item">
               <a class="nav-link active" onclick="switchYTCategory('night')"><i class="fas fa-moon"></i> Night</a>
@@ -388,7 +430,7 @@
           </ul>
 
           <div class="yt-carousel-wrapper">
-          <button class="yt-arrow" type="button" aria-label="Previous video" onclick="ytCarouselNav(-1)"><i class="fas fa-chevron-left"></i></button>
+          <button class="gallery-arrow yt-arrow" type="button" aria-label="Previous video" onclick="ytCarouselNav(-1)"><i class="fas fa-chevron-left"></i></button>
           <div id="yt-carousel" class="yt-carousel">
             <div class="yt-carousel-inner">
               <div class="yt-slide" data-cat="night"><video muted preload="none" poster="videos/opendv/night/tTBJeT5F4r8_poster.jpg" playsinline><source src="videos/opendv/night/tTBJeT5F4r8.mp4" type="video/mp4"></video></div>
@@ -417,7 +459,7 @@
             </div>
             <div class="yt-carousel-counter" id="yt-carousel-counter"></div>
           </div>
-          <button class="yt-arrow" type="button" aria-label="Next video" onclick="ytCarouselNav(1)"><i class="fas fa-chevron-right"></i></button>
+          <button class="gallery-arrow yt-arrow" type="button" aria-label="Next video" onclick="ytCarouselNav(1)"><i class="fas fa-chevron-right"></i></button>
           </div>
 
         </div>
@@ -566,6 +608,38 @@ function switchYTCategory(cat) {
   ytShowSlide();
 }
 
+var showcaseScrollTicking = false;
+
+function showcaseUpdateControls() {
+  var track = document.getElementById('showcase-track');
+  if (!track) return;
+  var prev = document.querySelector('.showcase-arrow-prev');
+  var next = document.querySelector('.showcase-arrow-next');
+  var maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+  var atStart = track.scrollLeft <= 2;
+  var atEnd = track.scrollLeft >= maxScroll - 2;
+  if (prev) {
+    prev.disabled = atStart;
+    prev.setAttribute('aria-disabled', atStart ? 'true' : 'false');
+  }
+  if (next) {
+    next.disabled = atEnd;
+    next.setAttribute('aria-disabled', atEnd ? 'true' : 'false');
+  }
+}
+
+function showcaseNav(dir) {
+  var track = document.getElementById('showcase-track');
+  if (!track) return;
+  var card = track.querySelector('.linkedin-embed-card');
+  var gap = parseFloat(window.getComputedStyle(track).columnGap || window.getComputedStyle(track).gap) || 0;
+  var step = card ? card.getBoundingClientRect().width + gap : track.clientWidth * 0.85;
+  track.scrollBy({
+    left: step * dir,
+    behavior: 'smooth'
+  });
+}
+
 function ytCarouselNav(dir) {
   var catSlides = ytSlideCache[ytCurrentCat];
   if (!catSlides) return;
@@ -578,6 +652,19 @@ function ytCarouselNav(dir) {
 document.addEventListener('DOMContentLoaded', function() {
   ytBuildCache();
   ytShowSlide();
+  var showcaseTrack = document.getElementById('showcase-track');
+  if (showcaseTrack) {
+    showcaseUpdateControls();
+    showcaseTrack.addEventListener('scroll', function() {
+      if (showcaseScrollTicking) return;
+      showcaseScrollTicking = true;
+      window.requestAnimationFrame(function() {
+        showcaseUpdateControls();
+        showcaseScrollTicking = false;
+      });
+    });
+    window.addEventListener('resize', showcaseUpdateControls);
+  }
   document.querySelectorAll('.yt-slide video').forEach(function(v) {
     v.addEventListener('ended', function() { ytCarouselNav(1); });
   });
